@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bazar Online</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Hind+Siliguri:wght@600&family=Josefin+Sans:wght@500&display=swap');
+    
+    .container {
+      text-align: center;
+    }
+
+    .hijo {
+      position: relative;
+      top: 18%;
+      margin: 3rem;
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+    }
+
+    #foto_buscar {
+      width: 4%;
+    position: absolute;
+    top: 8%;
+    right: 6%;
+    }
+    #buscar {
+      width: 58%;
+    position: absolute;
+    top: 6%;
+    right: 4%;
+
+    }
+    .btn-smartphones{
+      font-family: 'Hind Siliguri', sans-serif;
+      c
+      background: linear-gradient(90deg, rgba(177, 31, 199, 1) 26%, rgba(39, 9, 121, 1) 74%);
+    }
+    .btn-fragances{
+      font-family: 'Hind Siliguri', sans-serif;
+      background: rgb(255,255,0);
+background: linear-gradient(90deg, rgba(255,255,0,1) 5%, rgba(0,26,255,1) 94%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="container" id="hijo">
+      <img src="imagenes/2555001.png" style="width: 30%;display:flex;">
+      <div class="mb-3">
+        <h2>Resultado de la busqueda, algo de javascript</h2>
+        <input type="text" class="form-control" id="buscar" placeholder="laptops, smartphones,">
+        <img src="imagenes/107122.png" id="foto_buscar">
+      </div>
+      <div class="mb-3">
+        <button class="btn-smartphones">Smartphones</button>
+        <button class="btn-fragances">Fragances</button>
+        <!-- Aquí se agregaron contenedores div para mostrar la información -->
+        <div id="id"></div>
+        <div id="title"></div>
+        <div id="description"></div>
+        <div id="price"></div>
+        <div id="discountPercentage"></div>
+        <div id="rating"></div>
+        <div id="stock"></div>
+        <div id="brand"></div>
+        <div id="category"></div>
+        <div id="thumbnail"></div>
+        <div id="imagen"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+
+    <script>
+      // Objeto JSON con información de productos
+      var productos = [
+        {
+          "id": 1,
+          "title": "iPhone 9",
+          "description": "An apple mobile which is nothing like apple",
+          "price": 549,
+          "discountPercentage": 12.96,
+          "rating": 4.69,
+          "stock": 94,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/1/1.jpg",
+            "https://i.dummyjson.com/data/products/1/2.jpg",
+            "https://i.dummyjson.com/data/products/1/3.jpg",
+            "https://i.dummyjson.com/data/products/1/4.jpg",
+            "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+          ]
+        },
+        {
+      "id":2,
+      "title":"iPhone X",
+      "description":"SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+      "price":899,
+      "discountPercentage":17.94,
+      "rating":4.44,
+      "stock":34,
+      "brand":"Apple",
+      "category":"smartphones",
+      "thumbnail":"https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+      "images":[
+        "https://i.dummyjson.com/data/products/2/1.jpg",
+        "https://i.dummyjson.com/data/products/2/2.jpg",
+        "https://i.dummyjson.com/data/products/2/3.jpg",
+        "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+      ]
+    },
+      ];
+  
+      // Función para cargar y mostrar los productos
+      function cargarYMostrarProductos() {
+        var container = document.getElementById("hijo");
+  
+        // Recorre la lista de productos
+        productos.forEach(function (producto) {
+          // Crea un elemento de div para mostrar la información del producto
+          var productoDiv = document.createElement("div");
+          productoDiv.innerHTML = `
+            <div>
+              <div>ID: ${producto.id}</div>
+              <div>Title: ${producto.title}</div>
+              <div>Description: ${producto.description}</div>
+              <div>Price: $${producto.price}</div>
+              <div>Discount: ${producto.discountPercentage}%</div>
+              <div>Rating: ${producto.rating}</div>
+              <div>Stock: ${producto.stock}</div>
+              <div>Brand: ${producto.brand}</div>
+              <div>Category: ${producto.category}</div>
+              <div>Thumbnail: <img src="${producto.thumbnail}" alt="Thumbnail"></div>
+              <div>Images:</div>
+              <div>
+                ${producto.images.map(image => `<img src="${image}" alt="Product Image">`).join('')}
+              </div>
+            </div>
+          `;
+  
+          // Agrega el elemento del producto al contenedor principal
+          container.appendChild(productoDiv);
+        });
+      }
+  
+      // Llama a la función para cargar y mostrar los productos al cargar la página
+      window.onload = cargarYMostrarProductos;
+    </script>
+</body>
+
+</html>
